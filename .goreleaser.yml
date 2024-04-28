@@ -1,0 +1,48 @@
+project_name: check-chart
+
+env:
+  - COSIGN_YES=false
+
+before:
+  hooks:
+    - go mod download
+
+sboms:
+  - artifacts: archive
+
+builds:
+  - main: cmd/check-chart/main.go
+    binary: check-chart
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - amd64
+#      - arm64
+#      - arm
+    goos:
+      - linux
+      - darwin
+#      - windows
+    flags:
+      - -trimpath
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    ldflags:
+      - >-
+        -X appstore-gitbot/cmd.Version={{ .Tag }}
+        -X appstore-gitbot/cmd.GitCommit={{ .Commit }}
+        -X appstore-gitbot/cmd.BuildDate={{ .Date }}
+        -s -w
+
+archives:
+  - rlcp: true
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
