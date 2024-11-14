@@ -1,7 +1,7 @@
 # check-chart
 
 ## Description
-**check-chart** is a tool for checking charts in terminus apps, written in golang
+**check-chart** is a tool for checking charts in olares apps, written in golang
 
 ### Build
 go build -o check-chart cmd/check-chart/main.go

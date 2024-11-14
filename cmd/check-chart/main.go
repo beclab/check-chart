@@ -50,7 +50,7 @@ func main() {
 
 	cfgCmd := &cobra.Command{
 		Use:   "cfg",
-		Short: "Check if TerminusManifest.yaml is valid",
+		Short: "Check if OlaresManifest.yaml is valid",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
 
@@ -61,7 +61,7 @@ func main() {
 			}
 			err = validate.AppCfg(chart, true)
 			if err != nil {
-				fmt.Println("TerminusManifest.yaml is invalid: ", err)
+				fmt.Println("OlaresManifest.yaml is invalid: ", err)
 				return
 			}
 		},
