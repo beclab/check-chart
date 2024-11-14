@@ -24,7 +24,7 @@ func init() {
 }
 
 type AppConfiguration struct {
-	ConfigVersion string      `yaml:"terminusManifest.version" json:"terminusManifest.version" vd:"len($)>0;msg:sprintf('invalid parameter: %v;terminusManifest.version must satisfy the expr: len($)>0',$)"`
+	ConfigVersion string      `yaml:"olaresManifest.version" json:"olaresManifest.version" vd:"len($)>0;msg:sprintf('invalid parameter: %v;olaresManifest.version must satisfy the expr: len($)>0',$)"`
 	Metadata      AppMetaData `yaml:"metadata" json:"metadata"`
 	Entrances     []Entrance  `yaml:"entrances" json:"entrances" vd:"len($)>0 && len($)<=10;msg:sprintf('invalid parameter: %v;entrances must satisfy the expr: len($)>0 && len($)<=10',$)"`
 	Spec          AppSpec     `yaml:"spec,omitempty" json:"spec,omitempty"`
@@ -212,7 +212,7 @@ func getAppConfigFromCfgFile(chartPath string) (*AppConfiguration, error) {
 	if !strings.HasSuffix(chartPath, "/") {
 		chartPath += "/"
 	}
-	f, err := os.Open(chartPath + "TerminusManifest.yaml")
+	f, err := os.Open(chartPath + "OlaresManifest.yaml")
 	if err != nil {
 		return nil, err
 	}
@@ -364,7 +364,7 @@ func CheckAppData(cfg *AppConfiguration, chartPath string) error {
 			scanner := bufio.NewScanner(f)
 			for scanner.Scan() {
 				if p.MatchString(scanner.Text()) {
-					rerr = fmt.Errorf("found .Values.userspace.appdata in %s, but not set permission.appData in TerminusManifest.yaml", filepath.Base(path))
+					rerr = fmt.Errorf("found .Values.userspace.appdata in %s, but not set permission.appData in OlaresManifest.yaml", filepath.Base(path))
 				}
 			}
 		}

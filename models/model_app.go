@@ -15,9 +15,9 @@ type Chart struct {
 	Version    string `yaml:"version"`
 }
 
-// AppConfiguration represents the structure of the TerminusManifest.yaml file
+// AppConfiguration represents the structure of the OlaresManifest.yaml file
 type AppConfiguration struct {
-	ConfigVersion string      `yaml:"terminusManifest.version" json:"terminusManifest.version"`
+	ConfigVersion string      `yaml:"olaresManifest.version" json:"olaresManifest.version"`
 	Metadata      AppMetaData `yaml:"metadata" json:"metadata"`
 	Spec          AppSpec     `yaml:"spec" json:"spec"`
 }

@@ -53,7 +53,7 @@ func baseChartFolderCheck(folder string) (*models.Chart, *models.AppConfiguratio
 		return nil, nil, "", fmt.Errorf(constants.MissingTemplatesFolder, folder)
 	}
 
-	appCfgFile := filepath.Join(folder, "TerminusManifest.yaml")
+	appCfgFile := filepath.Join(folder, "OlaresManifest.yaml")
 	if !fileExists(appCfgFile) {
 		return nil, nil, "", fmt.Errorf(constants.MissingAppCfg, folder)
 	}
